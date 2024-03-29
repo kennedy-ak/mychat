@@ -1,17 +1,17 @@
-{% load static%}
+{% load static %}  <!-- Load static files such as CSS and JavaScript -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'base/main.css'%}">
-    <title>{% block title%} {% endblock title%}</title>
+    <link rel="stylesheet" href="{% static 'base/main.css' %}">  <!-- Link to the main CSS file -->
+    <title>{% block title %} {% endblock title %}</title>  <!-- Title of the page -->
 </head>
 <body>
-    {% block content %}
-
-    {% endblock content%}
+    {% block content %}  <!-- Main content block -->
+    
+    {% endblock content %}  <!-- End of content block -->
     
 </body>
 </html>

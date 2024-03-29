@@ -1,68 +1,62 @@
-{% extends 'base/main.html'%}
-{% load static%}
-{% block title%}
-Lobby
-{% endblock title%}
+{% extends 'base/main.html' %}  <!-- Extends the base template -->
+
+{% load static %}  <!-- Loads the static files such as CSS and JavaScript -->
+
+{% block title %}  <!-- Defines the title block -->
+Lobby  <!-- Title of the page -->
+{% endblock title %}  <!-- End of title block -->
 
 
-{% block content%}
+{% block content %}  <!-- Defines the content block -->
 <main>
-    <section id = "form-container">
-        <img id= "logo"src="{% static 'images/chat-icon.png'%}">
+    <section id="form-container">
+        <img id="logo" src="{% static 'images/chat-icon.png' %}">  <!-- Image logo -->
 
         <div id="welcome-message">
-            <h1>Welcome to MyChat App</h1>
-            <p>A group video calling application just for you</p>
-         </div>
+            <h1>Welcome to MyChat App</h1>  <!-- Welcome message -->
+            <p>A group video calling application just for you</p>  <!-- Description -->
+        </div>
 
-
-         <form action="" id="form">
+        <form action="" id="form">  <!-- Form for joining the stream -->
             <div class="form-field">
-                
                 <input type="text" name="room" placeholder="Enter a room name ..." style="text-transform: uppercase;">
+                <!-- Input field for room name -->
             </div>
             <div class="form-field">
-                
                 <input type="text" name="username" placeholder="Enter your name ..." style="text-transform: uppercase;">
+                <!-- Input field for username -->
             </div>
             <div class="form-field">
-
-                <input type="submit" value="Join Stream">
+                <input type="submit" value="Join Stream">  <!-- Submit button -->
             </div>
-         </form>
+        </form>
     </section>
 
-    <script type="text/javascript" >
+    <script type="text/javascript">
         let form = document.getElementById('form')
 
         let handleSubmit = async (e) => {
             e.preventDefault()
 
-            let room = e.target.room.value.toUpperCase()
-            let name = e.target.username.value
+            let room = e.target.room.value.toUpperCase()  // Get the room name and convert to uppercase
+            let name = e.target.username.value  // Get the username
 
-            let response = await fetch(`/get_token/?channel=${room}`)
-            let data = await response.json()
+            let response = await fetch(`/get_token/?channel=${room}`)  // Fetch token for the channel
+            let data = await response.json()  // Convert response to JSON
 
+            let UID = data.uid  // Extract UID from the response
+            let token = data.token  // Extract token from the response
 
-            let UID = data.uid 
-            let token = data.token
+            sessionStorage.setItem('UID', UID)  // Store UID in session storage
+            sessionStorage.setItem('room', room)  // Store room name in session storage
+            sessionStorage.setItem('token', token)  // Store token in session storage
+            sessionStorage.setItem('name', name)  // Store username in session storage
 
-            sessionStorage.setItem('UID',UID)
-            sessionStorage.setItem('room',room)
-            sessionStorage.setItem('token',token)
-            sessionStorage.setItem('name',name)
-
-            window.open('/room/','_self')
+            window.open('/room/', '_self')  // Redirect to the room page
         }
 
-        form.addEventListener('submit',handleSubmit)
+        form.addEventListener('submit', handleSubmit)  // Add submit event listener to the form
     </script>
 </main>
 
-
-
-
-
-
-{% endblock content%}
+{% endblock content %}  <!-- End of content block -->

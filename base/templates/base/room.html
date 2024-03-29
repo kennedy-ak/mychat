@@ -1,39 +1,46 @@
-{% extends 'base/main.html'%}
-{% load static%}
-{% block title %}
+{% extends 'base/main.html' %}  <!-- Extend the main base template -->
+
+{% load static %}  <!-- Load static files such as CSS and JavaScript -->
+
+{% block title %}  
 Room
-{% endblock title%}
+{% endblock title %}  <!-- End of title block -->
 
 
-{% block content%}
+{% block content %}  <!-- Main content block -->
 
 <main>
 
+    <!-- Section for displaying the room name -->
     <section id="room-name-wrapper">
         <p>Room Name: <span id="room-name"></span></p>
-
     </section>
 
-    <section id="video-streams">   </section>
+    <!-- Section for displaying video streams -->
+    <section id="video-streams"> </section>
 
-
+    <!-- Section for control buttons -->
     <section id="controls-wrapper"> 
-
+        <!-- Microphone control button -->
         <div class="icon-wrapper"> 
-            <img src="{% static 'images/microphone.svg'%}" id="mic-btn"  class="control-icon"alt="">
+            <img src="{% static 'images/microphone.svg' %}" id="mic-btn" class="control-icon" alt="">
         </div>
-
+        <!-- Camera control button -->
         <div class="icon-wrapper"> 
-            <img src="{% static 'images/video.svg'%}" id="camera-btn"  class="control-icon"alt="">
+            <img src="{% static 'images/video.svg' %}" id="camera-btn" class="control-icon" alt="">
         </div>
-
+        <!-- Leave room button -->
         <div class="icon-wrapper"> 
-            <img src="{% static 'images/leave.svg'%}" id="leave-btn"  class="control-icon"alt="">
+            <img src="{% static 'images/leave.svg' %}" id="leave-btn" class="control-icon" alt="">
         </div>
     </section>
     
 </main>
+
+<!-- Include AgoraRTC library -->
 <script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.20.2.js' %}"></script>
 
+<!-- Include custom JavaScript for managing streams -->
 <script type="text/javascript" src="{% static 'js/streams.js' %}"></script>
-{% endblock content%}
+
+{% endblock content %}  <!-- End of content block -->
